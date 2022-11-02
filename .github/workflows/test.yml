@@ -1,0 +1,22 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.19.2'
+    - name: Test CLI
+      run: |
+        go version
+        go run create.go -h
+        go run create.go -q "Always do your best. What you plant now, you will harvest later."
